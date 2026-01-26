@@ -1,0 +1,11 @@
+all:
+  children:
+    zabbix_agents:
+      hosts:
+        java-app-host:
+          ansible_host: localhost
+          ansible_connection: local
+          java_app_host: localhost
+          java_app_port: 8080
+          zabbix_server_host: localhost
+          zabbix_hostname: java-app-host

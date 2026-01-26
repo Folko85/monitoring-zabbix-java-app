@@ -1,0 +1,170 @@
+{
+  "dashboard": {
+    "name": "Spring Boot Actuator Monitoring",
+    "pages": [
+      {
+        "name": "Overview",
+        "widgets": [
+          {
+            "type": "graph",
+            "name": "JVM Memory Usage",
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6,
+            "fields": [
+              {
+                "type": 0,
+                "name": "items",
+                "value": [
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.JVM.MEMORY.HEAP.USED.ID}",
+                    "name": "Heap Used"
+                  },
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.JVM.MEMORY.HEAP.MAX.ID}",
+                    "name": "Heap Max"
+                  },
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.JVM.MEMORY.NONHEAP.USED.ID}",
+                    "name": "Non-Heap Used"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "name": "time_period",
+                "value": "1h"
+              }
+            ]
+          },
+          {
+            "type": "graph",
+            "name": "JVM Threads",
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6,
+            "fields": [
+              {
+                "type": 0,
+                "name": "items",
+                "value": [
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.JVM.THREADS.LIVE.ID}",
+                    "name": "Live Threads"
+                  },
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.JVM.THREADS.DAEMON.ID}",
+                    "name": "Daemon Threads"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "name": "time_period",
+                "value": "1h"
+              }
+            ]
+          },
+          {
+            "type": "graph",
+            "name": "CPU Usage",
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 6,
+            "fields": [
+              {
+                "type": 0,
+                "name": "items",
+                "value": [
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.SYSTEM.CPU.USAGE.ID}",
+                    "name": "System CPU"
+                  },
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.PROCESS.CPU.USAGE.ID}",
+                    "name": "Process CPU"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "name": "time_period",
+                "value": "1h"
+              }
+            ]
+          },
+          {
+            "type": "plaintext",
+            "name": "Health Status",
+            "x": 12,
+            "y": 0,
+            "width": 6,
+            "height": 4,
+            "fields": [
+              {
+                "type": 0,
+                "name": "itemids",
+                "value": [
+                  "{ITEM.ACTUATOR.HEALTH.ID}"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "plaintext",
+            "name": "Process Uptime",
+            "x": 12,
+            "y": 4,
+            "width": 6,
+            "height": 4,
+            "fields": [
+              {
+                "type": 0,
+                "name": "itemids",
+                "value": [
+                  "{ITEM.PROCESS.UPTIME.ID}"
+                ]
+              }
+            ]
+          },
+          {
+            "type": "graph",
+            "name": "HTTP Requests",
+            "x": 0,
+            "y": 18,
+            "width": 18,
+            "height": 6,
+            "fields": [
+              {
+                "type": 0,
+                "name": "items",
+                "value": [
+                  {
+                    "hostid": "{HOST.ID}",
+                    "itemid": "{ITEM.HTTP.SERVER.REQUESTS.TOTAL.ID}",
+                    "name": "Total Requests"
+                  }
+                ]
+              },
+              {
+                "type": 1,
+                "name": "time_period",
+                "value": "1h"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

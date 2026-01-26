@@ -1,0 +1,73 @@
+---
+- name: Setup Zabbix Agent for Spring Boot Actuator monitoring
+  hosts: all
+  become: yes
+  vars:
+    java_app_host: "{{ ansible_default_ipv4.address | default('localhost') }}"
+    java_app_port: 8080
+    zabbix_agent_config_dir: /etc/zabbix/zabbix_agentd.d
+    zabbix_agent_config_file: /etc/zabbix/zabbix_agentd.conf
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - python3
+          - python3-json
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install required packages (RedHat)
+      yum:
+        name:
+          - curl
+          - python3
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Ensure Zabbix Agent is installed
+      package:
+        name: zabbix-agent
+        state: present
+
+    - name: Create Zabbix Agent config directory
+      file:
+        path: "{{ zabbix_agent_config_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy user parameters configuration
+      template:
+        src: user_parameters.conf.j2
+        dest: "{{ zabbix_agent_config_dir }}/user_parameters.conf"
+        mode: '0644'
+        owner: root
+        group: root
+      notify: restart zabbix-agent
+
+    - name: Update Zabbix Agent main configuration
+      lineinfile:
+        path: "{{ zabbix_agent_config_file }}"
+        regexp: "^{{ item.key }}="
+        line: "{{ item.key }}={{ item.value }}"
+        backup: yes
+      loop:
+        - { key: "Server", value: "{{ zabbix_server_host | default('zabbix-server') }}" }
+        - { key: "ServerActive", value: "{{ zabbix_server_host | default('zabbix-server') }}" }
+        - { key: "Hostname", value: "{{ zabbix_hostname | default(ansible_hostname) }}" }
+        - { key: "Include", value: "{{ zabbix_agent_config_dir }}/*.conf" }
+      notify: restart zabbix-agent
+
+    - name: Ensure Zabbix Agent is running and enabled
+      systemd:
+        name: zabbix-agent
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart zabbix-agent
+      systemd:
+        name: zabbix-agent
+        state: restarted

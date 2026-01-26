@@ -1,0 +1,24 @@
+# Java
+java-app/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# Docker
+*.log
+
+# Ansible
+*.retry
+
+# OS
+.DS_Store
+Thumbs.db

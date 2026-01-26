@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.4</version>
+    <date>2024-01-01T00:00:00Z</date>
+    <items>
+        <!-- Health Check -->
+        <item>
+            <name>Spring Boot Health Status</name>
+            <type>0</type>
+            <snmp_community/>
+            <multiplier>0</multiplier>
+            <snmp_oid/>
+            <key>actuator.health</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>3</value_type>
+            <allowed_hosts/>
+            <units/>
+            <snmpv3_contextname/>
+            <snmpv3_securityname/>
+            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+            <snmpv3_authpassphrase/>
+            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+            <snmpv3_privpassphrase/>
+            <params/>
+            <ipmi_sensor/>
+            <authtype>0</authtype>
+            <username/>
+            <password/>
+            <publickey/>
+            <privatekey/>
+            <port/>
+            <description>Spring Boot Actuator health status</description>
+            <inventory_link>0</inventory_link>
+            <applications>
+                <application>
+                    <name>Spring Boot Actuator</name>
+                </application>
+            </applications>
+            <valuemap>
+                <name>Service state</name>
+            </valuemap>
+            <logtimefmt/>
+            <preprocessing/>
+            <jmx_endpoint/>
+            <master_item/>
+            <timeout>3s</timeout>
+            <url/>
+            <query_fields/>
+            <posts/>
+            <status_codes>200</status_codes>
+            <follow_redirects>1</follow_redirects>
+            <post_type>0</post_type>
+            <http_proxy/>
+            <headers/>
+            <retrieve_mode>0</retrieve_mode>
+            <request_method>0</request_method>
+            <output_format>0</output_format>
+            <allow_traps>0</allow_traps>
+            <ssl_cert_file/>
+            <ssl_key_file/>
+            <ssl_key_password/>
+            <verify_peer>0</verify_peer>
+            <verify_host>0</verify_host>
+        </item>
+
+        <!-- JVM Memory Heap Used -->
+        <item>
+            <name>JVM Memory Heap Used</name>
+            <type>0</type>
+            <key>jvm.memory.heap.used</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>3</value_type>
+            <units>B</units>
+            <description>JVM heap memory used</description>
+            <applications>
+                <application>
+                    <name>JVM Memory</name>
+                </application>
+            </applications>
+            <preprocessing>
+                <step>
+                    <type>1</type>
+                    <params/>
+                </step>
+            </preprocessing>
+        </item>
+
+        <!-- JVM Memory Heap Max -->
+        <item>
+            <name>JVM Memory Heap Max</name>
+            <type>0</type>
+            <key>jvm.memory.heap.max</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>3</value_type>
+            <units>B</units>
+            <description>JVM heap memory maximum</description>
+            <applications>
+                <application>
+                    <name>JVM Memory</name>
+                </application>
+            </applications>
+            <preprocessing>
+                <step>
+                    <type>1</type>
+                    <params/>
+                </step>
+            </preprocessing>
+        </item>
+
+        <!-- JVM Memory Non-Heap Used -->
+        <item>
+            <name>JVM Memory Non-Heap Used</name>
+            <type>0</type>
+            <key>jvm.memory.nonheap.used</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>3</value_type>
+            <units>B</units>
+            <description>JVM non-heap memory used</description>
+            <applications>
+                <application>
+                    <name>JVM Memory</name>
+                </application>
+            </applications>
+            <preprocessing>
+                <step>
+                    <type>1</type>
+                    <params/>
+                </step>
+            </preprocessing>
+        </item>
+
+        <!-- JVM Threads Live -->
+        <item>
+            <name>JVM Threads Live</name>
+            <type>0</type>
+            <key>jvm.threads.live</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>0</value_type>
+            <units>threads</units>
+            <description>Number of live JVM threads</description>
+            <applications>
+                <application>
+                    <name>JVM Threads</name>
+                </application>
+            </applications>
+        </item>
+
+        <!-- JVM Threads Daemon -->
+        <item>
+            <name>JVM Threads Daemon</name>
+            <type>0</type>
+            <key>jvm.threads.daemon</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>0</value_type>
+            <units>threads</units>
+            <description>Number of daemon JVM threads</description>
+            <applications>
+                <application>
+                    <name>JVM Threads</name>
+                </application>
+            </applications>
+        </item>
+
+        <!-- System CPU Usage -->
+        <item>
+            <name>System CPU Usage</name>
+            <type>0</type>
+            <key>system.cpu.usage</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>0</value_type>
+            <units>%</units>
+            <description>System CPU usage</description>
+            <applications>
+                <application>
+                    <name>CPU</name>
+                </application>
+            </applications>
+        </item>
+
+        <!-- Process CPU Usage -->
+        <item>
+            <name>Process CPU Usage</name>
+            <type>0</type>
+            <key>process.cpu.usage</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>0</value_type>
+            <units>%</units>
+            <description>Process CPU usage</description>
+            <applications>
+                <application>
+                    <name>CPU</name>
+                </application>
+            </applications>
+        </item>
+
+        <!-- Process Uptime -->
+        <item>
+            <name>Process Uptime</name>
+            <type>0</type>
+            <key>process.uptime</key>
+            <delay>60s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>0</value_type>
+            <units>s</units>
+            <description>Process uptime in seconds</description>
+            <applications>
+                <application>
+                    <name>Process Info</name>
+                </application>
+            </applications>
+        </item>
+
+        <!-- HTTP Server Requests Total -->
+        <item>
+            <name>HTTP Server Requests Total</name>
+            <type>0</type>
+            <key>http.server.requests.total</key>
+            <delay>30s</delay>
+            <history>7d</history>
+            <trends>365d</trends>
+            <status>0</status>
+            <value_type>3</value_type>
+            <units>requests</units>
+            <description>Total HTTP server requests</description>
+            <applications>
+                <application>
+                    <name>HTTP</name>
+                </application>
+            </applications>
+        </item>
+    </items>
+</zabbix_export>
