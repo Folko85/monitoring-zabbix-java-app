@@ -26,7 +26,7 @@
                     <history>1w</history>
                     <trends>0</trends>
                     <value_type>TEXT</value_type>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/health</url>
+                    <url>{$ACTUATOR.URL}/actuator/health</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -111,7 +111,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.classes.loaded</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.classes.loaded</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -136,7 +136,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.gc.live.data.size</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.gc.live.data.size</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -161,7 +161,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.memory.used</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.memory.used</url>
                     <query_fields>
                         <query_field>
                             <name>tag</name>
@@ -192,7 +192,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.memory.used</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.memory.used</url>
                     <query_fields>
                         <query_field>
                             <name>tag</name>
@@ -221,7 +221,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.threads.daemon</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.threads.daemon</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -244,7 +244,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/jvm.threads.live</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.threads.live</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -269,7 +269,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/process.uptime</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/process.uptime</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -292,7 +292,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/tomcat.sessions.active.current</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/tomcat.sessions.active.current</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -317,7 +317,7 @@
                             </parameters>
                         </step>
                     </preprocessing>
-                    <url>{$ACTUATOR.SCHEME}://{$ACTUATOR.HOST}:{$ACTUATOR.PORT}/actuator/metrics/process.cpu.usage</url>
+                    <url>{$ACTUATOR.URL}/actuator/metrics/process.cpu.usage</url>
                     <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
@@ -329,16 +329,8 @@
             </items>
             <macros>
                 <macro>
-                    <macro>{$ACTUATOR.HOST}</macro>
-                    <value>java-app</value>
-                </macro>
-                <macro>
-                    <macro>{$ACTUATOR.PORT}</macro>
-                    <value>8080</value>
-                </macro>
-                <macro>
-                    <macro>{$ACTUATOR.SCHEME}</macro>
-                    <value>http</value>
+                    <macro>{$ACTUATOR.URL}</macro>
+                    <value>http://localhost:8080</value>
                 </macro>
             </macros>
         </template>
