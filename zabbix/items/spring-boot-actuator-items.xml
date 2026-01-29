@@ -91,7 +91,7 @@
                     <triggers>
                         <trigger>
                             <uuid>67ddb3d3b7a549d6925302c53442b2fc</uuid>
-                            <expression>find(/Spring Boot Actuator/health[status],,&quot;like&quot;,&quot;DOWN&quot;)=1 or nodata(/Spring Boot Actuator/health[status],10m)=1</expression>
+                            <expression>find(/Spring Boot Actuator/health[status],,&quot;like&quot;,&quot;DOWN&quot;)=1 or nodata(/Spring Boot Actuator/health[status],1m)=1</expression>
                             <name>Health Down</name>
                             <priority>HIGH</priority>
                         </trigger>
