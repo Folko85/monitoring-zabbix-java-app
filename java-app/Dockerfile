@@ -19,9 +19,10 @@ WORKDIR /app
 # Копируем JAR файл из stage сборки
 COPY --from=build /app/target/*.jar app.jar
 
-# Устанавливаем curl для healthcheck
+# Устанавливаем curl для healthcheck и zabbix-sender
 RUN apt-get update && \
     apt-get install -y curl && \
+    apt-get install -y zabbix-sender && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8080
