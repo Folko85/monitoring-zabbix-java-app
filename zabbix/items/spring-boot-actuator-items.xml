@@ -21,67 +21,12 @@
                 <item>
                     <uuid>8d9428945f284558be58c7626654fd97</uuid>
                     <name>Health</name>
-                    <type>HTTP_AGENT</type>
+                    <type>TRAP</type>
                     <key>health</key>
                     <history>1w</history>
                     <trends>0</trends>
+                    <delay>1m</delay>
                     <value_type>TEXT</value_type>
-                    <url>{$ACTUATOR.URL}/actuator/health</url>
-                    <follow_redirects>NO</follow_redirects>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Actuator Endpoints</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>13ac75e60c634afa82bf6f867ae1cca9</uuid>
-                    <name>Components</name>
-                    <type>DEPENDENT</type>
-                    <key>health[components]</key>
-                    <delay>0</delay>
-                    <history>1w</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.components</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <master_item>
-                        <key>health</key>
-                    </master_item>
-                    <tags>
-                        <tag>
-                            <tag>Application</tag>
-                            <value>Actuator Endpoints</value>
-                        </tag>
-                    </tags>
-                </item>
-                <item>
-                    <uuid>30961cf82f754df28344896487d293a9</uuid>
-                    <name>Status</name>
-                    <type>DEPENDENT</type>
-                    <key>health[status]</key>
-                    <delay>0</delay>
-                    <history>1w</history>
-                    <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.status</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <master_item>
-                        <key>health</key>
-                    </master_item>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -91,7 +36,7 @@
                     <triggers>
                         <trigger>
                             <uuid>67ddb3d3b7a549d6925302c53442b2fc</uuid>
-                            <expression>find(/Spring Boot Actuator/health[status],,&quot;like&quot;,&quot;DOWN&quot;)=1 or nodata(/Spring Boot Actuator/health[status],1m)=1</expression>
+                            <expression>find(/Spring Boot Actuator/health,, "like", "DOWN")=1 or nodata(/Spring Boot Actuator/health,1m)=1</expression>
                             <name>Health Down</name>
                             <priority>HIGH</priority>
                         </trigger>
@@ -100,19 +45,9 @@
                 <item>
                     <uuid>019a323bbe4847dca166c3edcb689896</uuid>
                     <name>JVM Classes Loaded</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.classes.loaded</key>
-                    <delay>10m</delay>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.classes.loaded</url>
-                    <follow_redirects>NO</follow_redirects>
+                    <type>TRAP</type>
+                    <key>jvm.classes.loaded</key>
+                    <delay>1m</delay>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -123,21 +58,11 @@
                 <item>
                     <uuid>a9166b628b484552ae76b6bc1dfee7e5</uuid>
                     <name>JVM GC Live Data Size</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.gc.live.data.size</key>
-                    <delay>10m</delay>
+                    <type>TRAP</type>
+                    <key>jvm.gc.live.data.size</key>
+                    <delay>1m</delay>
                     <value_type>FLOAT</value_type>
                     <units>bytes</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.gc.live.data.size</url>
-                    <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -148,27 +73,11 @@
                 <item>
                     <uuid>f9aa2843709347f69aa498f7fd366e0b</uuid>
                     <name>JVM Heap Memory Used</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.memory.used[heap]</key>
-                    <delay>10m</delay>
+                    <type>TRAP</type>
+                    <key>jvm.memory.used[heap]</key>
+                    <delay>1m</delay>
                     <value_type>FLOAT</value_type>
                     <units>bytes</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.memory.used</url>
-                    <query_fields>
-                        <query_field>
-                            <name>tag</name>
-                            <value>area:heap</value>
-                        </query_field>
-                    </query_fields>
-                    <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -179,27 +88,11 @@
                 <item>
                     <uuid>8b306f645d23432b901e77ae0b17ee23</uuid>
                     <name>JVM Non-Heap Memory Used</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.memory.used[nonheap]</key>
-                    <delay>10m</delay>
+                    <type>TRAP</type>
+                    <key>jvm.memory.used[nonheap]</key>
+                    <delay>1m</delay>
                     <value_type>FLOAT</value_type>
                     <units>bytes</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.memory.used</url>
-                    <query_fields>
-                        <query_field>
-                            <name>tag</name>
-                            <value>area:nonheap</value>
-                        </query_field>
-                    </query_fields>
-                    <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -210,19 +103,9 @@
                 <item>
                     <uuid>006eeb86a937495eb6f9cad6125fa07a</uuid>
                     <name>JVM Live Daemon Threads</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.threads.daemon</key>
-                    <delay>10m</delay>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.threads.daemon</url>
-                    <follow_redirects>NO</follow_redirects>
+                    <type>TRAP</type>
+                    <key>jvm.threads.daemon</key>
+                    <delay>1m</delay>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -233,19 +116,9 @@
                 <item>
                     <uuid>6b74a1b9b14d4e35ad791288f335b9c8</uuid>
                     <name>JVM Live Threads</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.jvm.threads.live</key>
-                    <delay>10m</delay>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/jvm.threads.live</url>
-                    <follow_redirects>NO</follow_redirects>
+                    <type>TRAP</type>
+                    <key>jvm.threads.live</key>
+                    <delay>1m</delay>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -256,21 +129,11 @@
                 <item>
                     <uuid>4f0150b50151413ea5ae384adbdf46d1</uuid>
                     <name>Process Uptime</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.process.uptime</key>
-                    <delay>10m</delay>
+                    <type>TRAP</type>
+                    <key>process.uptime</key>
+                    <delay>1m</delay>
                     <value_type>FLOAT</value_type>
                     <units>seconds</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/process.uptime</url>
-                    <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -281,19 +144,9 @@
                 <item>
                     <uuid>cfb0544b1a6a4325afe293a49f80b84e</uuid>
                     <name>Active Sessions</name>
-                    <type>HTTP_AGENT</type>
-                    <key>metrics.tomcat.sessions.active.current</key>
-                    <delay>10m</delay>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/tomcat.sessions.active.current</url>
-                    <follow_redirects>NO</follow_redirects>
+                    <type>TRAP</type>
+                    <key>tomcat.sessions.active.current</key>
+                    <delay>1m</delay>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -304,21 +157,11 @@
                 <item>
                     <uuid>d45d9aa350c34a529d585742708a479c</uuid>
                     <name>Process CPU Usage</name>
-                    <type>HTTP_AGENT</type>
+                    <type>TRAP</type>
                     <key>process.cpu.usage</key>
-                    <delay>10m</delay>
+                    <delay>1m</delay>
                     <value_type>FLOAT</value_type>
                     <units>%</units>
-                    <preprocessing>
-                        <step>
-                            <type>JSONPATH</type>
-                            <parameters>
-                                <parameter>$.measurements[0].value</parameter>
-                            </parameters>
-                        </step>
-                    </preprocessing>
-                    <url>{$ACTUATOR.URL}/actuator/metrics/process.cpu.usage</url>
-                    <follow_redirects>NO</follow_redirects>
                     <tags>
                         <tag>
                             <tag>Application</tag>
@@ -327,12 +170,6 @@
                     </tags>
                 </item>
             </items>
-            <macros>
-                <macro>
-                    <macro>{$ACTUATOR.URL}</macro>
-                    <value>http://localhost:8080</value>
-                </macro>
-            </macros>
         </template>
     </templates>
     <graphs>
@@ -350,7 +187,7 @@
                     <calc_fnc>LAST</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.memory.used[heap]</key>
+                        <key>jvm.memory.used[heap]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -359,7 +196,7 @@
                     <calc_fnc>LAST</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.memory.used[nonheap]</key>
+                        <key>jvm.memory.used[nonheap]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -374,7 +211,7 @@
                     <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.memory.used[nonheap]</key>
+                        <key>jvm.memory.used[nonheap]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -383,7 +220,7 @@
                     <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.memory.used[heap]</key>
+                        <key>jvm.memory.used[heap]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -398,7 +235,7 @@
                     <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.threads.daemon</key>
+                        <key>jvm.threads.daemon</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -407,7 +244,7 @@
                     <calc_fnc>ALL</calc_fnc>
                     <item>
                         <host>Spring Boot Actuator</host>
-                        <key>metrics.jvm.threads.live</key>
+                        <key>jvm.threads.live</key>
                     </item>
                 </graph_item>
             </graph_items>
